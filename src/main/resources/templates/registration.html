@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація користувача</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Реєстрація</h2>
+    <form th:action="@{/user/registration}" method="post">
+        <div class="form-group">
+            <label for="username">Ім'я користувача:</label>
+            <input type="text" id="username" name="username" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Електронна пошта:</label>
+            <input type="email" id="email" name="email" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber">Телефон:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Зареєструватись</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: "Food-delivery-orders"
+
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    username: "postgres"
+    password: "postgres"
+    url: "jdbc:postgresql://localhost:5432/postgres"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    open-in-view: true
