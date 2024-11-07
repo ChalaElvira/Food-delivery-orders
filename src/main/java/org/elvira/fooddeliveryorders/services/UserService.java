@@ -1,5 +1,6 @@
 package org.elvira.fooddeliveryorders.services;
 
+import org.elvira.fooddeliveryorders.model.Role;
 import org.elvira.fooddeliveryorders.model.User;
 import org.elvira.fooddeliveryorders.repositories.UserRepository;
 import org.elvira.fooddeliveryorders.services.interfaces.IUserService;
@@ -21,6 +22,7 @@ public class UserService implements IUserService {
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword())); // Хешування пароля
+        user.setRole(Role.CLIENT);
         return userRepository.save(user);
     }
 

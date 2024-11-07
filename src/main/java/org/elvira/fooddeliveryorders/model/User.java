@@ -28,6 +28,7 @@ public class User {
     @Column(name = "PHONE")
     private String phoneNumber;
 
-    @Column(name = "ROLE")
-    private String role;  // Ролі користувача (CLIENT, ADMIN, COURIER)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ROLE", nullable = false)
+    private Role role;  // Ролі користувача (CLIENT, ADMIN, COURIER)
 }
