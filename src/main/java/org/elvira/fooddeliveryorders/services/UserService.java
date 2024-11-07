@@ -28,6 +28,7 @@ public class UserService implements IUserService {
     public User updateUser(User user, Long id) {
         if (userRepository.findById(id).isPresent()) {
             user.setId(id);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             return userRepository.save(user);
         }
         return null;
