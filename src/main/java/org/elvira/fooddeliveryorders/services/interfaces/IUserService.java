@@ -4,8 +4,8 @@ import org.elvira.fooddeliveryorders.model.User;
 
 public interface IUserService {
     User registerUser(User user);
-    User updateUser(User user, Long id);
+    void updateUser(User user, Long id);
     User getUserById(Long id);
     User getUserByName(String username);
-    User deleteUser(Long id);
+    void deleteUser(Long id);
 }

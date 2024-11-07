@@ -33,6 +33,10 @@
     <a th:href="@{/user/{id}/home(id=${user.getId()})}" class="btn btn-secondary">Повернутись на домашню сторінку</a>
   </form>
 
+  <form th:action="@{/user/{id}/delete(id=${user.getId()})}" method="post">
+    <button type="submit" class="btn btn-danger">Виалити користувача</button>
+  </form>
+
   <div th:if="${param.success}" class="alert alert-success mt-3">
     Профіль успішно оновлено!
   </div>

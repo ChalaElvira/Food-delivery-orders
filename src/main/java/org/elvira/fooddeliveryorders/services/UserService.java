@@ -27,13 +27,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updateUser(User user, Long id) {
+    public void updateUser(User user, Long id) {
         if (userRepository.findById(id).isPresent()) {
             user.setId(id);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return userRepository.save(user);
         }
-        return null;
     }
 
     @Override
@@ -50,11 +48,10 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User deleteUser(Long id) {
+    public void deleteUser(Long id) {
         if (userRepository.existsById(id)) {
             User user = userRepository.findById(id).orElseThrow();
             userRepository.delete(user);
         }
-        return null;
     }
 }

@@ -37,6 +37,12 @@ public class UserController {
     public String updateProfile(@PathVariable("id") Long id,
                                 @ModelAttribute("user") User updatedUser) {
         userService.updateUser(updatedUser, id);
-        return "redirect:/user/" + id + "/edit-profile?success";
+        return "redirect:/user/%s/edit-profile?success".formatted(id);
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return "redirect:/login";
     }
 }
