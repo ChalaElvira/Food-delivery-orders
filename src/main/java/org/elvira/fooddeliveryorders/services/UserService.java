@@ -4,20 +4,23 @@ import org.elvira.fooddeliveryorders.model.User;
 import org.elvira.fooddeliveryorders.repositories.UserRepository;
 import org.elvira.fooddeliveryorders.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements IUserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
-    public User createUser(User user) {
+    public User registerUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // Хешування пароля
         return userRepository.save(user);
     }
 
@@ -39,18 +42,16 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserByName(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
     public User deleteUser(Long id) {
         if (userRepository.existsById(id)) {
             User user = userRepository.findById(id).orElseThrow();
             userRepository.delete(user);
         }
         return null;
-    }
-
-    @Override
-    public Boolean authenticate(String username, String password) {
-        User user = userRepository.findUserByUsername(username);
-
-        return user != null && user.getPassword().equals(password);
     }
 }

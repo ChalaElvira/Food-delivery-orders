@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашня сторінка користувача</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Ласкаво просимо, <span th:text="${user.username}">[Ім'я користувача]</span>!</h2>
+
+    <div class="user-info">
+        <p><strong>Ім'я користувача:</strong> <span th:text="${user.username}">[Ім'я користувача]</span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}">[Email]</span></p>
+        <p><strong>Номер телефону:</strong> <span th:text="${user.phoneNumber}">[Телефон]</span></p>
+        <p><strong>Роль:</strong> <span th:text="${user.role}">[Роль]</span></p>
+    </div>
+
+    <div class="actions">
+        <a th:href="@{/user/{id}/orders(id=${user.getId()})}" class="btn btn-primary">Переглянути історію замовлень</a>
+        <a th:href="@{/user/{id}/edit-profile(id=${user.getId()})}" class="btn btn-secondary">Редагувати профіль</a>
+        <a href="/login" class="btn btn-danger">Вийти</a>
+    </div>
+</div>
+
+</body>
+</html>

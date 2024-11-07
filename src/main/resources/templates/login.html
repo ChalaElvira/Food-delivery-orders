@@ -1,34 +1,27 @@
 <!DOCTYPE html>
-<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Вхід</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="/css/style.css"> <!-- Додаткові стилі за потреби -->
+    <title>Логін</title>
 </head>
 <body>
-
 <div class="container">
-    <h2>Вхід до облікового запису</h2>
+    <h2>Вхід</h2>
 
-    <form th:action="@{/user/login}" method="post">
-        <div class="form-group">
-            <label for="username">Ім'я користувача:</label>
-            <input type="text" id="username" name="username" required class="form-control">
-        </div>
+    <!-- Відображення повідомлення про помилку, якщо вхід невдалий -->
+    <div th:if="${param.error}">
+        <p>Невірне ім'я користувача або пароль</p>
+    </div>
 
-        <div class="form-group">
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password" required class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Увійти</button>
-
-        <div th:if="${error}" class="error-message">
-            <p th:text="${error}"></p>
-        </div>
+    <!-- Форма для логіну, відправляється на /perform_login -->
+    <form th:action="@{/login}" method="post">
+        <label>Ім'я користувача: <input type="text" name="username"></label><br>
+        <label>Пароль: <input type="password" name="password"></label><br>
+        <button type="submit">Вхід</button>
     </form>
-</div>
 
+    <!-- Посилання для реєстрації -->
+    <p>Ще не зареєстровані? <a th:href="@{/registration}">Зареєструватися</a></p>
+</div>
 </body>
 </html>
