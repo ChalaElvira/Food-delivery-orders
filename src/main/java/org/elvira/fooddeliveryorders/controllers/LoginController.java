@@ -35,10 +35,17 @@ public class LoginController {
         User user = userService.getUserByName(username);
 
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            return "redirect:/user/" + user.getId() + "/home";  // Перенаправляємо на домашню сторінку
-        } else {
-            // Якщо користувач не знайдений або пароль неправильний
-            return "redirect:/login?error=true";  // Перенаправляємо на сторінку логіну з помилкою
+            switch (user.getRole()) {
+                case CLIENT, COURIER -> {
+                    return "redirect:/user/%s/home".formatted(user.getId());  // Перенаправляємо на домашню сторінку
+                }
+                case ADMIN -> {
+                    return "redirect:/admin/%s/dashboard".formatted(user.getId());
+                }
+                default -> throw new IllegalStateException("Unexpected value: " + user.getRole());
+            }
+
         }
+        return "redirect:/login?error=true";
     }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Інформаційна панель адміністратора</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Інформаційна панель адміністратора</h1>
+<div class="dashboard-buttons">
+    <a th:href="@{/admin/{id}/users(id=${userId})}" class="btn btn-primary">Кервання користувачами</a>
+    <a th:href="@{/admin/{id}/restaurants(id=${userId})}" class="btn btn-secondary">Керування закладами</a>
+    <a th:href="@{/user/{id}/home(id=${userId})}" class="btn btn-secondary">Домашня сторінка</a>
+</div>
+</body>
+</html>

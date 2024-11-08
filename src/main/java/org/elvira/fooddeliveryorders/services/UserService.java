@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService implements IUserService {
 
@@ -27,19 +31,31 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(User user, Long id) {
-        if (userRepository.findById(id).isPresent()) {
-            user.setId(id);
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void updateUser(User source, Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+
+            User target = userOptional.get();
+
+            target.setUsername(source.getUsername());
+            target.setEmail(source.getEmail());
+            target.setPhoneNumber(source.getPhoneNumber());
+
+            if (source.getPassword() != null && !source.getPassword().isEmpty()) {
+                target.setPassword(passwordEncoder.encode(source.getPassword()));
+            }
+
+            if (source.getRole() != null) {
+                target.setRole(source.getRole());
+            }
+
+            userRepository.save(target);
         }
     }
 
     @Override
     public User getUserById(Long id) {
-        if (userRepository.existsById(id)) {
-            return userRepository.findById(id).orElseThrow();
-        }
-        return null;
+        return userRepository.findById(id).orElseThrow();
     }
 
     @Override
@@ -53,5 +69,12 @@ public class UserService implements IUserService {
             User user = userRepository.findById(id).orElseThrow();
             userRepository.delete(user);
         }
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add);
+        return users;
     }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Керування користувачами</title>
+</head>
+<body>
+<h1>Керування користувачами</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Ім'я користувача</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Роль</th>
+        <th>Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.role}"></td>
+        <td>
+            <a th:href="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${id})}">Edit</a>
+            <form th:action="@{/admin/{adminId}/user/{id}/delete(id=${user.getId()},adminId=${id})}" method="get" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/admin/{id}/add-user(id=${id})}">Додати користувача</a>
+</body>
+</html>
