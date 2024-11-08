@@ -26,7 +26,9 @@ public class UserService implements IUserService {
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword())); // Хешування пароля
-        user.setRole(Role.CLIENT);
+        if (user.getRole() == null) {
+            user.setRole(Role.CLIENT);
+        }
         return userRepository.save(user);
     }
 
