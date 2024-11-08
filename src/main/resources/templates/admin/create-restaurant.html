@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Restaurant</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Create New Restaurant</h1>
+
+<form th:action="@{/admin/{adminId}/create-restaurant(adminId=${adminId})}" th:object="${restaurant}" method="post">
+    <div>
+        <label for="name">Restaurant Name:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter restaurant name" required>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}" placeholder="Enter description"></textarea>
+    </div>
+
+    <button type="submit">Create Restaurant</button>
+</form>
+
+<a th:href="@{/admin/{adminId}/restaurants(adminId=${adminId})}">Back to Restaurants List</a>
+</body>
+</html>

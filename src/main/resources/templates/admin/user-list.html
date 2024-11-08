@@ -18,20 +18,20 @@
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.phoneNumber}"></td>
-        <td th:text="${user.role}"></td>
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getPhoneNumber()}"></td>
+        <td th:text="${user.getRole()}"></td>
         <td>
-            <a th:href="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${id})}">Edit</a>
-            <form th:action="@{/admin/{adminId}/user/{id}/delete(id=${user.getId()},adminId=${id})}" method="get" style="display:inline;">
+            <a th:href="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${adminId})}">Edit</a>
+            <form th:action="@{/admin/{adminId}/user/{id}/delete(id=${user.getId()},adminId=${adminId})}" method="get" style="display:inline;">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
     </tr>
     </tbody>
 </table>
-<a th:href="@{/admin/{id}/add-user(id=${id})}">Додати користувача</a>
+<a th:href="@{/admin/{id}/add-user(id=${adminId})}">Додати користувача</a>
 </body>
 </html>

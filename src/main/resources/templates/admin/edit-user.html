@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Edit User</h1>
-<form th:action="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${id})}" th:method="post">
+<form th:action="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${adminId})}" th:method="post">
   <input type="hidden" th:value="${user.id}" name="id" />
 
   <label for="username">Ім'я користувача:</label>

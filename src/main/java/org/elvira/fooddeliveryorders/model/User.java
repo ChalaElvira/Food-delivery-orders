@@ -30,5 +30,5 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", nullable = false)
-    private Role role;  // Ролі користувача (CLIENT, ADMIN, COURIER)
+    private Role role;
 }

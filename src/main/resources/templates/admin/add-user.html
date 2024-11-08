@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Додавання нового користувача</h1>
-<form th:action="@{/admin/{id}/add-user(id=${id})}" th:object="${user}" method="post">
+<form th:action="@{/admin/{id}/add-user(id=${adminId})}" th:object="${user}" method="post">
     <div>
         <label for="username">Ім'я користувача:</label>
         <input type="text" id="username" th:field="*{username}" required />

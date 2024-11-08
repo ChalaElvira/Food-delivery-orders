@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редагувати ресторан</title>
+</head>
+<body>
+<h2>Редагувати ресторан</h2>
+<form th:action="@{/admin/{adminId}/restaurant/{id}/edit(id=${restaurant.getId()},adminId=${adminId})}"
+      th:object="${restaurant}"
+      method="post">
+    <label>Назва: <input type="text" th:field="*{name}"/></label><br>
+    <label>Опис: <input type="text" th:field="*{description}"/></label><br>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
