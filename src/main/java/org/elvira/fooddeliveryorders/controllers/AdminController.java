@@ -1,8 +1,7 @@
 package org.elvira.fooddeliveryorders.controllers;
 
-import org.elvira.fooddeliveryorders.model.Restaurant;
-import org.elvira.fooddeliveryorders.model.Role;
-import org.elvira.fooddeliveryorders.model.User;
+import org.elvira.fooddeliveryorders.model.*;
+import org.elvira.fooddeliveryorders.services.DishService;
 import org.elvira.fooddeliveryorders.services.RestaurantService;
 import org.elvira.fooddeliveryorders.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +18,19 @@ public class AdminController {
     private static final String REDIRECT_TO_USERS = "redirect:/admin/%s/users";
     private static final String REDIRECT_TO_RESTAURANTS = "redirect:/admin/%s/restaurants";
     private static final String ADMIN_ID = "adminId";
+    private static final String RESTAURANT_ATTR_NAME = "restaurant";
 
     private final UserService userService;
     private final RestaurantService restaurantService;
+    private final DishService dishService;
 
     @Autowired
     public AdminController(UserService userService,
-                           RestaurantService restaurantService) {
+                           RestaurantService restaurantService,
+                           DishService dishService) {
         this.userService = userService;
         this.restaurantService = restaurantService;
+        this.dishService = dishService;
     }
 
     @ModelAttribute
@@ -97,13 +100,13 @@ public class AdminController {
     // Display the create restaurant form
     @GetMapping("/create-restaurant")
     public String showCreateRestaurantForm(Model model) {
-        model.addAttribute("restaurant", new Restaurant());
+        model.addAttribute(RESTAURANT_ATTR_NAME, new Restaurant());
         return "admin/create-restaurant";
     }
 
     // Handle the form submission for creating a restaurant
     @PostMapping("/create-restaurant")
-    public String createRestaurant(@ModelAttribute("restaurant") Restaurant restaurant,
+    public String createRestaurant(@ModelAttribute(RESTAURANT_ATTR_NAME) Restaurant restaurant,
                                    Model model) {
         restaurantService.createRestaurant(restaurant);
         return REDIRECT_TO_RESTAURANTS.formatted(model.getAttribute(ADMIN_ID));
@@ -114,13 +117,13 @@ public class AdminController {
     public String editRestaurant(@PathVariable Long id,
                                  Model model) {
         Restaurant restaurant = restaurantService.getRestaurant(id);
-        model.addAttribute("restaurant", restaurant);
+        model.addAttribute(RESTAURANT_ATTR_NAME, restaurant);
         return "admin/edit-restaurant";
     }
 
     @PostMapping("/restaurant/{id}/edit")
     public String updateRestaurant(@PathVariable Long id,
-                                   @ModelAttribute("restaurant") Restaurant restaurant,
+                                   @ModelAttribute(RESTAURANT_ATTR_NAME) Restaurant restaurant,
                                    Model model) {
         restaurantService.updateRestaurant(restaurant, id);
         return REDIRECT_TO_RESTAURANTS.formatted(model.getAttribute(ADMIN_ID));
@@ -132,5 +135,33 @@ public class AdminController {
                                    Model model) {
         restaurantService.deleteRestaurant(id);
         return REDIRECT_TO_RESTAURANTS.formatted(model.getAttribute(ADMIN_ID));
+    }
+
+    @GetMapping("/restaurant/{restaurantId}/dishes")
+    public String viewRestaurantDishes(@PathVariable("restaurantId") Long restaurantId,
+                                       Model model) {
+        Restaurant restaurant = restaurantService.getRestaurant(restaurantId);
+        model.addAttribute(RESTAURANT_ATTR_NAME, restaurant);
+        model.addAttribute("dishes", restaurant.getDishes());
+        return "admin/restaurant-dishes";
+    }
+
+    // Show form to add a new dish to a restaurant
+    @GetMapping("/restaurant/{restaurantId}/add-dish")
+    public String showAddDishForm(@PathVariable("restaurantId") Long restaurantId,
+                                  Model model) {
+        model.addAttribute("restaurantId", restaurantId);
+        model.addAttribute("types", DishType.values());
+        model.addAttribute("dish", new Dish());
+        return "admin/add-dish";
+    }
+
+    // Handle the form submission for adding a new dish
+    @PostMapping("/restaurant/{restaurantId}/add-dish")
+    public String addDishToRestaurant(@PathVariable("restaurantId") Long restaurantId,
+                                      @ModelAttribute("dish") Dish dish,
+                                      Model model) {
+        dishService.createDish(dish, restaurantId);
+        return "redirect:/admin/%s/restaurant/%s/dishes".formatted(model.getAttribute(ADMIN_ID), restaurantId);
     }
 }

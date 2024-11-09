@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ресторанні страви</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h1 th:text="${restaurant.getName()} + ' страви'">Ресторанні страви</h1>
+
+<div>
+    <a th:href="@{'/admin/' + ${adminId} + '/restaurants'}" class="btn btn-secondary">До списку ресторанів</a>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Назва</th>
+        <th>Опис</th>
+        <th>Ціна</th>
+        <th>Тип</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.getName()}">Dish Name</td>
+        <td th:text="${dish.getDescription()}">Description</td>
+        <td th:text="${dish.getPrice()}">Price</td>
+        <td th:text="${dish.getDishType()}">Dish Type</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="'/admin/' + ${adminId} + '/restaurant/' + ${restaurantId} + '/add-dish'" class="btn btn-secondary">
+    Додати страву</a>
+</body>
+</html>

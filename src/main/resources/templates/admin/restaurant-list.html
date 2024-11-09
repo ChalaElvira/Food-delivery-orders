@@ -15,11 +15,16 @@
         <td th:text="${restaurant.getName()}"></td>
         <td th:text="${restaurant.getDescription()}"></td>
         <td>
-            <a th:href="@{/admin/{adminId}/restaurant/{id}/edit(id=${restaurant.getId()},adminId=${adminId})}">Edit</a>
+            <a th:href="@{/admin/{adminId}/restaurant/{id}/edit(id=${restaurant.getId()},adminId=${adminId})}">
+                Редагувати
+            </a>
+            <a th:href="@{/admin/{adminId}/restaurant/{id}/dishes(id=${restaurant.getId()},adminId=${adminId})}">
+                Страви
+            </a>
             <form th:action="@{/admin/{adminId}/restaurant/{id}/delete(id=${restaurant.getId()},adminId=${adminId})}"
                   method="post"
                   style="display:inline;">
-                <button type="submit">Delete</button>
+                <button type="submit">Видалити</button>
             </form>
         </td>
     </tr>

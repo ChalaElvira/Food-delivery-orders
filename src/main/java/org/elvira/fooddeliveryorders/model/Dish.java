@@ -57,7 +57,7 @@ public class Dish {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, price, dishType, restaurant);
+        return Objects.hash(id, name, description, price, dishType);
     }
 
     @Override

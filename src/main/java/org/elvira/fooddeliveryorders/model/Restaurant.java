@@ -51,7 +51,7 @@ public class Restaurant {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, dishes);
+        return Objects.hash(id, name, description);
     }
 
     @Override
