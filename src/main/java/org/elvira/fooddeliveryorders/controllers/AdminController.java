@@ -17,6 +17,7 @@ public class AdminController {
 
     private static final String REDIRECT_TO_USERS = "redirect:/admin/%s/users";
     private static final String REDIRECT_TO_RESTAURANTS = "redirect:/admin/%s/restaurants";
+    private static final String REDIRECT_TO_DISHES = "redirect:/admin/%s/restaurant/%s/dishes";
     private static final String ADMIN_ID = "adminId";
     private static final String RESTAURANT_ATTR_NAME = "restaurant";
 
@@ -162,6 +163,37 @@ public class AdminController {
                                       @ModelAttribute("dish") Dish dish,
                                       Model model) {
         dishService.createDish(dish, restaurantId);
-        return "redirect:/admin/%s/restaurant/%s/dishes".formatted(model.getAttribute(ADMIN_ID), restaurantId);
+        return REDIRECT_TO_DISHES.formatted(model.getAttribute(ADMIN_ID), restaurantId);
+    }
+
+    // Display form to edit a dish
+    @GetMapping("/restaurant/{restaurantId}/dish/{dishId}/edit")
+    public String showEditDishForm(@PathVariable("restaurantId") Long restaurantId,
+                                   @PathVariable("dishId") Long dishId,
+                                   Model model) {
+        Dish dish = dishService.getDishById(dishId);  // Retrieves the dish to be edited
+        model.addAttribute("restaurantId", restaurantId);
+        model.addAttribute("dish", dish);
+        model.addAttribute("dishTypes", DishType.values());
+        return "admin/dish-edit";
+    }
+
+    // Process the form submission for editing a dish
+    @PostMapping("/restaurant/{restaurantId}/dish/{dishId}/edit")
+    public String updateDish(@PathVariable("restaurantId") Long restaurantId,
+                             @PathVariable("dishId") Long dishId,
+                             @ModelAttribute("dish") Dish updatedDish,
+                             Model model) {
+        dishService.updateDish(updatedDish, dishId);  // Updates the dish details
+        return REDIRECT_TO_DISHES.formatted(model.getAttribute(ADMIN_ID), restaurantId);
+    }
+
+    // Handle request to delete a dish
+    @PostMapping("/restaurant/{restaurantId}/dish/{dishId}/delete")
+    public String deleteDish(@PathVariable("restaurantId") Long restaurantId,
+                             @PathVariable("dishId") Long dishId,
+                             Model model) {
+        dishService.deleteDish(dishId);  // Deletes the dish
+        return REDIRECT_TO_DISHES.formatted(model.getAttribute(ADMIN_ID), restaurantId);
     }
 }

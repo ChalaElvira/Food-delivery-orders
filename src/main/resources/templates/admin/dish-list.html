@@ -28,6 +28,14 @@
         <td th:text="${dish.getDescription()}">Description</td>
         <td th:text="${dish.getPrice()}">Price</td>
         <td th:text="${dish.getDishType()}">Dish Type</td>
+        <td>
+            <a th:href="@{'/admin/' + ${adminId} + '/restaurant/' + ${restaurantId} + '/dish/' + ${dish.getId()} + '/edit'}"
+               class="btn btn-secondary">Редагувати</a>
+            <form th:action="@{'/admin/' + ${adminId} + '/restaurant/' + ${restaurantId} + '/dish/' + ${dish.getId()} + '/delete'}"
+                  method="post" th:object="${dish}" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Видалити</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

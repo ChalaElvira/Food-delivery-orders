@@ -30,5 +30,6 @@
     </tr>
 </table>
 <a th:href="@{/admin/{adminId}/create-restaurant(adminId=${adminId})}">Додати ресторан</a>
+<a th:href="@{'/admin/' + ${adminId} + '/dashboard'}" >До інформаційної панелі</a>
 </body>
 </html>

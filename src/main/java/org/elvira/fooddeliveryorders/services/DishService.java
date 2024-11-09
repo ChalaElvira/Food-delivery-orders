@@ -38,7 +38,6 @@ public class DishService implements IDishService {
 
         target.setName(source.getName());
         target.setDescription(source.getDescription());
-        target.setRestaurant(source.getRestaurant());
         target.setDishType(source.getDishType());
         target.setPrice(source.getPrice());
 

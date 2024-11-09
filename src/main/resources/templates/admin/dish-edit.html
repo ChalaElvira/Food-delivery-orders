@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Dish</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h1>Edit Dish</h1>
+
+<div>
+    <a th:href="@{'/admin/' + ${adminId} + '/restaurant/' + ${restaurantId} + '/dishes'}" class="btn btn-secondary">Back
+        to Dishes</a>
+</div>
+
+<form th:action="@{'/admin/' + ${adminId} + '/restaurant/' + ${restaurantId} + '/dish/' + ${dish.getId()} + '/edit'}"
+      th:object="${dish}" method="post">
+    <div>
+        <label for="name">Назва</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+
+    <div>
+        <label for="description">Опис</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+    </div>
+
+    <div>
+        <label for="price">Ціна</label>
+        <input type="number" id="price" th:field="*{price}" step="0.01" min="0" required>
+    </div>
+
+    <div>
+        <label for="dishType">Тип</label>
+        <select id="dishType" th:field="*{dishType}">
+            <option th:each="type : ${dishTypes}"
+                    th:value="${type}" th:text="${type}">Тип страви
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Зберегти</button>
+    </div>
+</form>
+<a th:href="@{/admin/{adminId}/restaurant/{id}/dishes(id=${restaurantId},adminId=${adminId})}">
+    До списку страв
+</a>
+</body>
+</html>
