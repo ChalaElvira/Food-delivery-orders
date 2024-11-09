@@ -50,7 +50,7 @@ public class AdminController {
     public String editUserForm(@PathVariable("id") Long id,
                                Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "admin/edit-user";
+        return "admin/user-edit";
     }
 
     // 3. Edit user (POST)
@@ -79,7 +79,7 @@ public class AdminController {
     public String showAddUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", Role.values()); // To populate roles dropdown
-        return "admin/add-user";
+        return "admin/user-add";
     }
 
     @PostMapping("/add-user")
@@ -101,7 +101,7 @@ public class AdminController {
     @GetMapping("/create-restaurant")
     public String showCreateRestaurantForm(Model model) {
         model.addAttribute(RESTAURANT_ATTR_NAME, new Restaurant());
-        return "admin/create-restaurant";
+        return "admin/restaurant-add";
     }
 
     // Handle the form submission for creating a restaurant
@@ -118,7 +118,7 @@ public class AdminController {
                                  Model model) {
         Restaurant restaurant = restaurantService.getRestaurant(id);
         model.addAttribute(RESTAURANT_ATTR_NAME, restaurant);
-        return "admin/edit-restaurant";
+        return "admin/restaurant-edit";
     }
 
     @PostMapping("/restaurant/{id}/edit")
@@ -143,7 +143,7 @@ public class AdminController {
         Restaurant restaurant = restaurantService.getRestaurant(restaurantId);
         model.addAttribute(RESTAURANT_ATTR_NAME, restaurant);
         model.addAttribute("dishes", restaurant.getDishes());
-        return "admin/restaurant-dishes";
+        return "admin/dish-list";
     }
 
     // Show form to add a new dish to a restaurant
@@ -153,7 +153,7 @@ public class AdminController {
         model.addAttribute("restaurantId", restaurantId);
         model.addAttribute("types", DishType.values());
         model.addAttribute("dish", new Dish());
-        return "admin/add-dish";
+        return "admin/dish-add";
     }
 
     // Handle the form submission for adding a new dish
