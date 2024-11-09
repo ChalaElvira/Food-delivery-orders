@@ -31,4 +31,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", nullable = false)
     private Role role;
+
+    public boolean isAdmin() {
+        return role.equals(Role.ADMIN);
+    }
 }

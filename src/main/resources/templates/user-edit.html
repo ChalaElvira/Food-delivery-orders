@@ -8,7 +8,7 @@
 <div class="container">
   <h2>Редагувати профіль</h2>
 
-  <form th:action="@{/user/{id}/edit-profile(id=${user.getId()})}" th:object="${user}" method="post">
+  <form th:action="@{/user/{id}/user-edit(id=${user.getId()})}" th:object="${user}" method="post">
     <div class="form-group">
       <label for="username">Ім'я користувача</label>
       <input type="text" id="username" th:field="*{username}" class="form-control" required />
