@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Реєстрація користувача</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../static/css/login-registration.css">
 </head>
 <body>
 
@@ -13,22 +13,22 @@
     <form th:action="@{/registration}" method="post">
         <div class="form-group">
             <label for="username">Ім'я користувача:</label>
-            <input type="text" id="username" name="username" required class="form-control">
+            <input type="text" id="username" name="username" required class="form-control" placeholder="Ім'я *">
         </div>
 
         <div class="form-group">
             <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password" required class="form-control">
+            <input type="password" id="password" name="password" required class="form-control" placeholder="Пароль *">
         </div>
 
         <div class="form-group">
             <label for="email">Електронна пошта:</label>
-            <input type="email" id="email" name="email" required class="form-control">
+            <input type="email" id="email" name="email" required class="form-control" placeholder="Електронна пошта *"> 
         </div>
 
         <div class="form-group">
             <label for="phoneNumber">Телефон:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control">
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Телефон">
         </div>
 
         <button type="submit" class="btn btn-primary">Зареєструватись</button>
