@@ -45,9 +45,11 @@ h2 {
     text-shadow: 1px 1px 8px rgba(3, 3, 3, 0.6);
 }
 
+
 .actions {
     display: flex;
     flex-direction: column;
+    text-align: center;
     gap: 15px;
     margin-top: 20px;
 }
@@ -60,6 +62,7 @@ h2 {
     text-decoration: none;
     color: #e9e6e6;
     transition: background-color 0.3s ease;
+    display: flex;
 }
 
 

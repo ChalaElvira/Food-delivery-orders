@@ -7,12 +7,11 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url("/static/images/login_background.jpg"); /* Шлях до вашого зображення */
+    background-image: url("/static/images/login_background.jpg"); 
     background-size: cover;
     background-position: center;
 }
 
-/* Контейнер */
 .container {
     background-color:rgba(179, 177, 177, 0.5);
     padding: 40px;
@@ -24,14 +23,14 @@ body {
 }
 
 .container::before {
-    content: ""; /* Псевдоелемент не має контенту */
+    content: ""; 
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Напівпрозорий чорний фон для затемнення */
-    border-radius: 12px; /* Округлені краї */
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 12px; 
     z-index: -1; /* Щоб затемнення було під вмістом */
 }
 
@@ -60,24 +59,23 @@ label {
     padding: 8px 0;
     font-size: 16px;
     border: none;
-    border-bottom: 2px solid #ddd; /* Лише нижня лінія */
-    background-color: transparent; /* Прозорий фон */
-    color: #333; /* Колір тексту */
-    transition: border-color 0.3s ease; /* Плавний перехід кольору лінії */
+    border-bottom: 2px solid #ddd; 
+    background-color: transparent; 
+    color: #333; 
+    transition: border-color 0.3s ease; 
 }
 
 /* Лінія при фокусі */
 .form-control:focus {
     outline: none;
-    border-bottom: 2px solid #cf7b54; /* Зміна кольору лінії при фокусі */
+    border-bottom: 2px solid #cf7b54; 
 }
 
 .form-control::placeholder {
-    color: #afaeae; /* колір тексту placeholder */
+    color: #afaeae; 
     opacity: 1; /* робить колір повністю непрозорим */
 }
 
-/* Кнопка входу */
 .btn-primary {
     background-color: #FF6347;
     color: #FFFFFF;
