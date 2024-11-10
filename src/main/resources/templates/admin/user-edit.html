@@ -2,27 +2,38 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Edit User</title>
+  <link rel="stylesheet" href="/static/css/edit-user.css">
 </head>
 <body>
-<h1>Edit User</h1>
-<form th:action="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${adminId})}" th:method="post">
+<div class="container">
+<h1>Редагувати користувача</h1>
+<form th:action="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${id})}" th:method="post">
   <input type="hidden" th:value="${user.id}" name="id" />
 
-  <label for="username">Ім'я користувача:</label>
-  <input type="text" id="username" name="username" th:value="${user.username}" required />
+  <div class="form-group">
+  <label for="username">Ім'я користувача *</label>
+  <input type="text" id="username" name="username" th:value="${user.username}" required class="form-control"/>
+  </div>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" th:value="${user.email}" required />
+  <div class="form-group">
+  <label for="email">Електронна пошта *</label>
+  <input type="email" id="email" name="email" th:value="${user.email}" required class="form-control"/>
+  </div>
 
-  <label for="phoneNumber">Телефон:</label>
-  <input type="tel" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}" required />
+  <div class="form-group">
+  <label for="phoneNumber">Телефон</label>
+  <input type="tel" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}" required class="form-control"/>
+  </div>
 
-  <label for="role">Роль:</label>
-  <select id="role" name="role" th:value="${user.role}">
+  <div>
+  <label for="role">Роль</label>
+  <select id="role" name="role" th:value="${user.role}" class="form-control">
+    <option value="" disabled selected>Оберіть роль</option>
     <option value="CLIENT" th:selected="${user.role == 'CLIENT'}">Клієнт</option>
     <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">Адміністратор</option>
     <option value="COURIER" th:selected="${user.role == 'COURIER'}">Кур'єр</option>
   </select>
+  </div>
 
   <button type="submit" class="btn btn-primary">Зберегти</button>
 </form>

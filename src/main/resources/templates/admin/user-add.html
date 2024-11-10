@@ -2,34 +2,37 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Додавання нового користувача</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="/static/css/add-user.css">
 </head>
 <body>
+    <div class="container">
 <h1>Додавання нового користувача</h1>
 <form th:action="@{/admin/{id}/add-user(id=${adminId})}" th:object="${user}" method="post">
     <div>
-        <label for="username">Ім'я користувача:</label>
-        <input type="text" id="username" th:field="*{username}" required />
+        <label for="username">Ім'я користувача</label>
+        <input type="text" id="username" th:field="*{username}" required class="form-control" placeholder="Ім'я *"/>
     </div>
     <div>
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" th:field="*{password}" required />
+        <label for="password">Пароль</label>
+        <input type="password" id="password" th:field="*{password}" required class="form-control" placeholder="Пароль *"/>
     </div>
     <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" th:field="*{email}" required />
+        <label for="email">Електронна пошта</label>
+        <input type="email" id="email" th:field="*{email}" required class="form-control" placeholder="Електронна пошта *"/>
     </div>
     <div>
-        <label for="phoneNumber">Телефон:</label>
-        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
+        <label for="phoneNumber">Телефон</label>
+        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" placeholder="Телефон *"/>
     </div>
     <div>
-        <label for="role">Роль:</label>
-        <select id="role" th:field="*{role}">
+        <label for="role">Роль</label>
+        <select id="role" th:field="*{role}" class="form-control">
+            <option value="" disabled selected>Оберіть роль</option>
             <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
         </select>
     </div>
-    <button type="submit">Додати</button>
+    <button type="submit" class="btn-primary">Додати</button>
 </form>
+</div>
 </body>
 </html>

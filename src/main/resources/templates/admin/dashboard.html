@@ -2,14 +2,17 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Інформаційна панель адміністратора</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
 </head>
 <body>
-<h1>Інформаційна панель адміністратора</h1>
-<div class="dashboard-buttons">
-    <a th:href="@{/admin/{id}/users(id=${adminId})}" class="btn btn-primary">Кервання користувачами</a>
-    <a th:href="@{/admin/{id}/restaurants(id=${adminId})}" class="btn btn-secondary">Керування закладами</a>
-    <a th:href="@{/user/{id}/home(id=${adminId})}" class="btn btn-secondary">Домашня сторінка</a>
-</div>
+    <div class="container">
+        <h1>Інформаційна панель адміністратора</h1>
+        <div class="dashboard-buttons">
+            <a th:href="@{/admin/{id}/users(id=${adminId})}" class="btn btn-primary">Керування користувачами</a>
+            <a th:href="@{/admin/{id}/restaurants(id=${adminId})}" class="btn btn-secondary">Керування закладами</a> 
+            <a th:href="@{/user/{id}/home(id=${adminId})}" class="btn btn-secondary">Домашня сторінка</a>
+        </div>
+    </div> 
 </body>
 </html>
+

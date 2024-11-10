@@ -2,12 +2,14 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Керування користувачами</title>
+    <link rel="stylesheet" href="/static/css/user-list.css">
 </head>
 <body>
+<div class="container">
 <h1>Керування користувачами</h1>
 <table>
     <thead>
-    <tr>
+    <tr class="columns">
         <th>ID</th>
         <th>Ім'я користувача</th>
         <th>Email</th>
@@ -32,7 +34,7 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{/admin/{id}/add-user(id=${adminId})}">Додати користувача</a>
-<a th:href="@{/admin/{id}/dashboard(id=${adminId})}">До інформаційної панелі</a>
+<a class="button-add" th:href="@{/admin/{id}/add-user(id=${adminId})}">Додати користувача</a>
+<a class="button-add" th:href="@{/admin/{id}/dashboard(id=${adminId})}">До інформаційної панелі</a>
 </body>
 </html>
