@@ -19,6 +19,7 @@
         <p>Price: $<span th:text="${dish.getPrice()}">0.00</span></p>
         <a th:href="@{'/user/' + ${userId} + '/restaurant/' + ${restaurant.getId()} + '/dish/' + ${dish.getId()}}"
            class="btn btn-secondary">Детальніше</a>
+        <a th:href="@{'/user/' + ${userId} + '/dish/' + ${dish.getId()} + '/add'}">Додати до кошика</a>
     </div>
     <hr>
 </div>

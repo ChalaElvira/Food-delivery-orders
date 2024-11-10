@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
@@ -33,26 +32,22 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(User source, Long id) {
-        Optional<User> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent()) {
+    public User updateUser(User source, Long id) {
+        User target = userRepository.findById(id).orElseThrow();
 
-            User target = userOptional.get();
+        target.setUsername(source.getUsername());
+        target.setEmail(source.getEmail());
+        target.setPhoneNumber(source.getPhoneNumber());
 
-            target.setUsername(source.getUsername());
-            target.setEmail(source.getEmail());
-            target.setPhoneNumber(source.getPhoneNumber());
-
-            if (source.getPassword() != null && !source.getPassword().isEmpty()) {
-                target.setPassword(passwordEncoder.encode(source.getPassword()));
-            }
-
-            if (source.getRole() != null) {
-                target.setRole(source.getRole());
-            }
-
-            userRepository.save(target);
+        if (source.getPassword() != null && !source.getPassword().isEmpty()) {
+            target.setPassword(passwordEncoder.encode(source.getPassword()));
         }
+
+        if (source.getRole() != null) {
+            target.setRole(source.getRole());
+        }
+
+        return userRepository.save(target);
     }
 
     @Override

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Кошик покупок</title>
+</head>
+<body>
+<h1>Кошик покупок</h1>
+<table>
+  <tr>
+    <th>Назва страви</th>
+    <th>Кількість</th>
+    <th>Ціна</th>
+    <th>Сума</th>
+    <th>Дії</th>
+  </tr>
+  <tr th:each="item : ${cartItems}">
+    <td th:text="${item.getDish().getName()}"></td>
+    <td>
+      <form th:action="@{/user/{userId}/dish/{dishId}/update(userId=${userId},dishId=${item.getDish().getId()})}"
+            method="get">
+        <label>
+          <input type="number" name="quantity" th:value="${item.quantity}" min="1" required>
+        </label>
+        <button type="submit">Оновити</button>
+      </form>
+    </td>
+    <td th:text="${item.getDish().getPrice()}"></td>
+    <td th:text="${item.getPrice()}"></td>
+    <td>
+      <a th:href="@{/user/{userId}/dish/{dishId}/remove(userId=${userId},dishId=${item.dish.id})}">Видалити</a>
+    </td>
+  </tr>
+</table>
+
+<h2>Загальна сума: <span th:text="${totalPrice}">0</span> грн</h2>
+
+<a th:href="@{'/user/' + ${userId} + '/cart/clear'}">Очистити кошик</a>
+<a th:href="@{/checkout}">Оформити замовлення</a>
+</body>
+</html>

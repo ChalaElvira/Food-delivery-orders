@@ -59,7 +59,8 @@ public class AdminController {
     public String updateUser(@PathVariable Long id,
                              User updatedUser,
                              Model model) {
-        userService.updateUser(updatedUser, id);
+        User result = userService.updateUser(updatedUser, id);
+        model.addAttribute("user", result);
         return REDIRECT_TO_USERS.formatted(model.getAttribute(ADMIN_ID));
     }
 
@@ -109,7 +110,8 @@ public class AdminController {
     @PostMapping("/create-restaurant")
     public String createRestaurant(@ModelAttribute(RESTAURANT_ATTR_NAME) Restaurant restaurant,
                                    Model model) {
-        restaurantService.createRestaurant(restaurant);
+        Restaurant result = restaurantService.createRestaurant(restaurant);
+        model.addAttribute(RESTAURANT_ATTR_NAME, result);
         return REDIRECT_TO_RESTAURANTS.formatted(model.getAttribute(ADMIN_ID));
     }
 
@@ -126,7 +128,8 @@ public class AdminController {
     public String updateRestaurant(@PathVariable Long id,
                                    @ModelAttribute(RESTAURANT_ATTR_NAME) Restaurant restaurant,
                                    Model model) {
-        restaurantService.updateRestaurant(restaurant, id);
+        Restaurant result = restaurantService.updateRestaurant(restaurant, id);
+        model.addAttribute(RESTAURANT_ATTR_NAME, result);
         return REDIRECT_TO_RESTAURANTS.formatted(model.getAttribute(ADMIN_ID));
     }
 
@@ -162,7 +165,8 @@ public class AdminController {
     public String addDishToRestaurant(@PathVariable("restaurantId") Long restaurantId,
                                       @ModelAttribute("dish") Dish dish,
                                       Model model) {
-        dishService.createDish(dish, restaurantId);
+        Dish result = dishService.createDish(dish, restaurantId);
+        model.addAttribute("dish", result);
         return REDIRECT_TO_DISHES.formatted(model.getAttribute(ADMIN_ID), restaurantId);
     }
 
@@ -184,7 +188,8 @@ public class AdminController {
                              @PathVariable("dishId") Long dishId,
                              @ModelAttribute("dish") Dish updatedDish,
                              Model model) {
-        dishService.updateDish(updatedDish, dishId);  // Updates the dish details
+        Dish result = dishService.updateDish(updatedDish, dishId);  // Updates the dish details
+        model.addAttribute("dish", result);
         return REDIRECT_TO_DISHES.formatted(model.getAttribute(ADMIN_ID), restaurantId);
     }
 

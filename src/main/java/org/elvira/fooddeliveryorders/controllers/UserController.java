@@ -1,5 +1,6 @@
 package org.elvira.fooddeliveryorders.controllers;
 
+import org.elvira.fooddeliveryorders.components.Cart;
 import org.elvira.fooddeliveryorders.model.Dish;
 import org.elvira.fooddeliveryorders.model.Restaurant;
 import org.elvira.fooddeliveryorders.model.User;
@@ -18,17 +19,22 @@ import java.util.Set;
 public class UserController {
 
     private static final String USER_ID = "userId";
+    private static final String REDIRECT_TO_CART = "redirect:/user/%s/cart";
+
     private final IUserService userService;
     private final IRestaurantService restaurantService;
     private final IDishService dishService;
+    private final Cart cart;
 
     @Autowired
     public UserController(IUserService userService,
                           IRestaurantService restaurantService,
-                          IDishService dishService) {
+                          IDishService dishService,
+                          Cart cart) {
         this.userService = userService;
         this.restaurantService = restaurantService;
         this.dishService = dishService;
+        this.cart = cart;
     }
 
     @ModelAttribute
@@ -89,5 +95,42 @@ public class UserController {
         model.addAttribute("restaurantId", restaurantId);
         model.addAttribute("dish", dish);
         return "user/dish-details";
+    }
+
+    @GetMapping("/cart")
+    public String viewCart(Model model) {
+        model.addAttribute("cartItems", cart.getItems());
+        model.addAttribute("totalPrice", cart.getTotalPrice());
+        return "user/cart-view";
+    }
+
+    @GetMapping("/dish/{dishId}/add")
+    public String addToCart(@PathVariable Long dishId,
+                            @RequestParam(defaultValue = "1") int quantity,
+                            Model model) {
+        Dish dish = dishService.getDishById(dishId);
+        cart.addItem(dish, quantity);
+        return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
+    }
+
+    @GetMapping("/dish/{dishId}/update")
+    public String updateQuantity(@PathVariable Long dishId,
+                                 @RequestParam int quantity,
+                                 Model model) {
+        cart.updateItemQuantity(dishId, quantity);
+        return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
+    }
+
+    @GetMapping("/dish/{dishId}/remove")
+    public String removeFromCart(@PathVariable Long dishId,
+                                 Model model) {
+        cart.removeItem(dishId);
+        return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
+    }
+
+    @GetMapping("/dish/clear")
+    public String clearCart(Model model) {
+        cart.clear();
+        return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
     }
 }
