@@ -23,7 +23,7 @@ public class OrderDetail {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @OneToOne()
+    @ManyToOne()
     @JoinColumn(name = "DISH_ID")
     private Dish dish;
 
@@ -47,12 +47,12 @@ public class OrderDetail {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return Objects.equals(order, that.order) && Objects.equals(dish, that.dish);
+        return Objects.equals(dish, that.dish);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, dish);
+        return Objects.hash(dish);
     }
 
     @Override

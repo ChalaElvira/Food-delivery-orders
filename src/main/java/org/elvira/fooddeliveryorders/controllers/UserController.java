@@ -1,9 +1,8 @@
 package org.elvira.fooddeliveryorders.controllers;
 
 import org.elvira.fooddeliveryorders.components.Cart;
-import org.elvira.fooddeliveryorders.model.Dish;
-import org.elvira.fooddeliveryorders.model.Restaurant;
-import org.elvira.fooddeliveryorders.model.User;
+import org.elvira.fooddeliveryorders.model.*;
+import org.elvira.fooddeliveryorders.services.OrderService;
 import org.elvira.fooddeliveryorders.services.interfaces.IDishService;
 import org.elvira.fooddeliveryorders.services.interfaces.IRestaurantService;
 import org.elvira.fooddeliveryorders.services.interfaces.IUserService;
@@ -12,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -25,16 +26,18 @@ public class UserController {
     private final IRestaurantService restaurantService;
     private final IDishService dishService;
     private final Cart cart;
+    private final OrderService orderService;
 
     @Autowired
     public UserController(IUserService userService,
                           IRestaurantService restaurantService,
                           IDishService dishService,
-                          Cart cart) {
+                          Cart cart, OrderService orderService) {
         this.userService = userService;
         this.restaurantService = restaurantService;
         this.dishService = dishService;
         this.cart = cart;
+        this.orderService = orderService;
     }
 
     @ModelAttribute
@@ -128,9 +131,42 @@ public class UserController {
         return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
     }
 
-    @GetMapping("/dish/clear")
+    @GetMapping("/cart/clear")
     public String clearCart(Model model) {
         cart.clear();
         return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
+    }
+
+    @GetMapping("/checkout")
+    public String checkout(Model model) {
+
+        if (cart.getTotalPrice() == 0) {
+            return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
+        }
+
+        User user = userService.getUserById((Long) model.getAttribute(USER_ID));
+
+        Order order = new Order();
+        order.setUser(user);
+        order.setDate(new Date());
+        cart.getItems().forEach(cartItem -> {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setQuantity(cartItem.getQuantity());
+            orderDetail.setDish(cartItem.getDish());
+            order.addOrderDetail(orderDetail);
+        });
+        order.setTotal(cart.getTotalPrice());
+
+        orderService.createOrder(order);
+        cart.clear();
+        return "redirect:/user/%s/orders".formatted(model.getAttribute(USER_ID));
+    }
+
+    @GetMapping("/orders")
+    public String viewOrders(Model model) {
+        List<Order> orders = orderService.getAllOrdersByUserId((Long) model.getAttribute(USER_ID));
+        model.addAttribute("orders", orders);
+
+        return "user/order-list";
     }
 }

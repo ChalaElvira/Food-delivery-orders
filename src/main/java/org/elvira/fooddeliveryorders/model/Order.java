@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,10 +20,20 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderDetail> orderDetails;
+    @Column(name = "DATE")
+    private Date date;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderDetail> orderDetails = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @Column(name = "TOTAL")
+    private Double total;
 
     public void addOrderDetail(OrderDetail orderDetail) {
         this.addOrderDetail(orderDetail, false);
@@ -40,19 +52,23 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id;
+        return Objects.equals(date, order.date)
+                && Objects.equals(orderDetails, order.orderDetails)
+                && Objects.equals(user, order.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, date, orderDetails, user);
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", date=" + date +
                 ", orderDetails=" + orderDetails +
+                ", user=" + user +
                 '}';
     }
 }

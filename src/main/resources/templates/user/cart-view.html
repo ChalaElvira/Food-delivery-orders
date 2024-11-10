@@ -2,6 +2,7 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Кошик покупок</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 <h1>Кошик покупок</h1>
@@ -35,6 +36,6 @@
 <h2>Загальна сума: <span th:text="${totalPrice}">0</span> грн</h2>
 
 <a th:href="@{'/user/' + ${userId} + '/cart/clear'}">Очистити кошик</a>
-<a th:href="@{/checkout}">Оформити замовлення</a>
+<a th:href="@{'/user/' + ${userId} + '/checkout'}">Оформити замовлення</a>
 </body>
 </html>

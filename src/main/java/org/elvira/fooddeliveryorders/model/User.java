@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ACCOUNTS")
 @Data
@@ -31,6 +33,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 
     public boolean isAdmin() {
         return role.equals(Role.ADMIN);
