@@ -32,6 +32,11 @@
                 </ul>
             </td>
             <td th:text="${order.getTotal()}"></td>
+            <td>
+                <a th:href="@{/user/{userId}/order/{orderId}/repeat(userId=${userId},orderId=${order.getId()})}">
+                    Повторити замовлення
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>

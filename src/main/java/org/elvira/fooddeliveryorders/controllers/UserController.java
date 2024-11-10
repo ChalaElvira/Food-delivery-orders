@@ -169,4 +169,15 @@ public class UserController {
 
         return "user/order-list";
     }
+
+    @GetMapping("order/{orderId}/repeat")
+    public String orderRepeat(@PathVariable Long orderId,
+                              Model model) {
+        cart.clear();
+        Order order = orderService.getOrder(orderId);
+
+        order.getOrderDetails().forEach(orderDetail -> cart.addItem(orderDetail.getDish(), orderDetail.getQuantity()));
+
+        return REDIRECT_TO_CART.formatted(model.getAttribute(USER_ID));
+    }
 }
