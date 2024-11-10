@@ -1,9 +1,9 @@
 package org.elvira.fooddeliveryorders.controllers;
 
 import org.elvira.fooddeliveryorders.model.*;
-import org.elvira.fooddeliveryorders.services.DishService;
-import org.elvira.fooddeliveryorders.services.RestaurantService;
-import org.elvira.fooddeliveryorders.services.UserService;
+import org.elvira.fooddeliveryorders.services.interfaces.IDishService;
+import org.elvira.fooddeliveryorders.services.interfaces.IRestaurantService;
+import org.elvira.fooddeliveryorders.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +21,14 @@ public class AdminController {
     private static final String ADMIN_ID = "adminId";
     private static final String RESTAURANT_ATTR_NAME = "restaurant";
 
-    private final UserService userService;
-    private final RestaurantService restaurantService;
-    private final DishService dishService;
+    private final IUserService userService;
+    private final IRestaurantService restaurantService;
+    private final IDishService dishService;
 
     @Autowired
-    public AdminController(UserService userService,
-                           RestaurantService restaurantService,
-                           DishService dishService) {
+    public AdminController(IUserService userService,
+                           IRestaurantService restaurantService,
+                           IDishService dishService) {
         this.userService = userService;
         this.restaurantService = restaurantService;
         this.dishService = dishService;
