@@ -1,0 +1,121 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("/static/images/login_background.jpg"); 
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    background-color:rgba(179, 177, 177, 0.5);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.container::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8); 
+    border-radius: 12px; 
+    z-index: -1; 
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: hsl(27, 94%, 79%);
+    font-size: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+label {
+   
+    color:rgba(0,0,0, 0)
+}
+
+
+.form-control {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ddd; 
+    background-color: transparent; 
+    color: #b8b5b5; 
+    transition: border-color 0.3s ease; 
+}
+
+.form-control:focus {
+    outline: none;
+    border-bottom: 2px solid #cf7b54; 
+}
+
+.form-control::placeholder {
+    color: #a8a8a8; 
+    opacity: 1;
+}
+
+.btn-primary {
+    background-color: #FF6347;
+    color: #FFFFFF;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    width: 50%;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #c04431;
+}
+
+.btn-secondary {
+    background-color: #965348;
+    color: #FFFFFF;
+    padding: 7px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #633630;
+}
+
+
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 5px;
+    }
+    .text {
+        font-size: 1.5rem;
+    }
+}

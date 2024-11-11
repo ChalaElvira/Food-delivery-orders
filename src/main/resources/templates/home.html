@@ -22,12 +22,9 @@
     <div class="actions">
         <a th:href="@{/user/{id}/orders(id=${user.getId()})}" class="btn btn-primary">Переглянути історію замовлень</a>
         <a th:href="@{/user/{id}/user-edit(id=${user.getId()})}" class="btn btn-secondary">Редагувати профіль</a>
-        <a href="/login" class="btn btn-danger">Вийти</a>
         <a th:if="${user.isAdmin()}" th:href="@{'/admin/' + ${user.getId()} + '/dashboard'}" class="btn btn-secondary">До інформаційної панелі</a>
-</div>
-    </div>
-    <a th:if="${user.isAdmin()}" th:href="@{'/admin/' + ${user.getId()} + '/dashboard'}">До інформаційної панелі</a>
-    <a th:href="@{'/user/' + ${user.getId()} + '/restaurants'}">Ресторани</a>
+        <a th:href="@{'/user/' + ${user.getId()} + '/restaurants'}" class="btn btn-secondary">Ресторани</a>
+        <a href="/login" class="btn btn-danger">Вийти</a>
 </div>
 
 </body>

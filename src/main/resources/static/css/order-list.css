@@ -56,9 +56,11 @@ thead {
 }
 
 th, td {
+    width: 25%;
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
 }
 
 
@@ -66,7 +68,7 @@ td {
     color: #2c2c2c;
 }
 
-a, .btn {
+a {
     display: inline-block;
     text-decoration: none;
     padding: 8px 12px;
@@ -74,10 +76,7 @@ a, .btn {
     font-size: 14px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-}
-
-a {
-    color: #584a4a;
+    color: #2c2525;
     background-color: #fdae87;
     cursor: pointer;
 }
@@ -87,38 +86,7 @@ a:hover {
     color: #fff;
 }
 
-.btn-danger {
-    color: #fff;
-    background-color: #e63946;
-    border: none;
-    cursor: pointer;
-}
 
-.btn-danger:hover {
-    background-color: #d62828;
-}
-
-th {
-    font-weight: bold;
-}
-
-td, th {
-
-    font-size: 14px;
-}
-
-.button-add{
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 15px;
-    font-size: 1rem;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    transition: background-color 0.3s ease;
-    background-color: #9c3c2be0;
-    cursor: pointer;
-}
 @media (max-width: 480px) {
     body {
         font-size: 14px;

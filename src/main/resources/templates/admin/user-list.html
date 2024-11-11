@@ -26,9 +26,10 @@
         <td th:text="${user.getPhoneNumber()}"></td>
         <td th:text="${user.getRole()}"></td>
         <td>
-            <a th:href="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${adminId})}">Edit</a>
+            <a th:href="@{/admin/{adminId}/user/{id}/edit(id=${user.getId()},adminId=${adminId})}"
+            class="btn btn-secondary">Редагувати</a>
             <form th:action="@{/admin/{adminId}/user/{id}/delete(id=${user.getId()},adminId=${adminId})}" method="get" style="display:inline;">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">Видалити</button>
             </form>
         </td>
     </tr>

@@ -20,12 +20,12 @@ h1 {
 }
 
 .container {
-    background-color:rgba(252, 128, 106, 0.801);
+    background-color:rgba(179, 177, 177, 0.5);
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     text-align: center;
 }
 
@@ -56,9 +56,11 @@ thead {
 }
 
 th, td {
+    width: 25%;
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
 }
 
 
@@ -66,19 +68,16 @@ td {
     color: #2c2c2c;
 }
 
-a, .btn {
+a {
     display: inline-block;
     text-decoration: none;
     padding: 8px 12px;
     margin: 5px 0;
-    font-size: 14px;
-    border-radius: 4px;
+    font-size: 18px;
+    border-radius: 15px;
     transition: background-color 0.3s ease;
-}
-
-a {
-    color: #584a4a;
-    background-color: #fdae87;
+    color: #f8f6f6;
+    background-color:#FF6347;
     cursor: pointer;
 }
 
@@ -87,38 +86,7 @@ a:hover {
     color: #fff;
 }
 
-.btn-danger {
-    color: #fff;
-    background-color: #e63946;
-    border: none;
-    cursor: pointer;
-}
 
-.btn-danger:hover {
-    background-color: #d62828;
-}
-
-th {
-    font-weight: bold;
-}
-
-td, th {
-
-    font-size: 14px;
-}
-
-.button-add{
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 15px;
-    font-size: 1rem;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    transition: background-color 0.3s ease;
-    background-color: #9c3c2be0;
-    cursor: pointer;
-}
 @media (max-width: 480px) {
     body {
         font-size: 14px;

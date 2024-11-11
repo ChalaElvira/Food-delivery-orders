@@ -56,9 +56,11 @@ thead {
 }
 
 th, td {
+    width: 25%;
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
 }
 
 
@@ -79,7 +81,6 @@ a, .btn {
 a {
     color: #584a4a;
     background-color: #fdae87;
-    cursor: pointer;
 }
 
 a:hover {
@@ -100,11 +101,6 @@ a:hover {
 
 th {
     font-weight: bold;
-}
-
-td, th {
-
-    font-size: 14px;
 }
 
 .button-add{

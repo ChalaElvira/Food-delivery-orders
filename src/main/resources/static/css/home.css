@@ -29,13 +29,14 @@ h2 {
 
 .user-info{
     flex: 1;
+
 }
 
 .user-info p {
     font-size: 1rem;
     line-height: 1.5;
     color: #eee4df;
-   
+   margin-top: 30px;;
 }
 
 .user-info strong {

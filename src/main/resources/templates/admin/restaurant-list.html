@@ -2,35 +2,43 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Ресторанний менеджмент</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/restaurant-list.css">
 </head>
 <body>
+<div class="container">
 <h2>Ресторанний менеджмент</h2>
 <table>
-    <tr>
+    <thead>
+    <tr lass="columns">
         <th>Назва</th>
         <th>Опис</th>
         <th>Дії</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="restaurant : ${restaurants}">
         <td th:text="${restaurant.getName()}"></td>
         <td th:text="${restaurant.getDescription()}"></td>
-        <td>
-            <a th:href="@{/admin/{adminId}/restaurant/{id}/edit(id=${restaurant.getId()},adminId=${adminId})}">
+        <td colspan="4">
+            <a th:href="@{/admin/{adminId}/restaurant/{id}/edit(id=${restaurant.getId()},adminId=${adminId})}"
+            class="btn btn-secondary">
                 Редагувати
             </a>
-            <a th:href="@{/admin/{adminId}/restaurant/{id}/dishes(id=${restaurant.getId()},adminId=${adminId})}">
+            <a th:href="@{/admin/{adminId}/restaurant/{id}/dishes(id=${restaurant.getId()},adminId=${adminId})}"
+            class="btn btn-secondary">
                 Страви
             </a>
             <form th:action="@{/admin/{adminId}/restaurant/{id}/delete(id=${restaurant.getId()},adminId=${adminId})}"
                   method="post"
                   style="display:inline;">
-                <button type="submit">Видалити</button>
+                <button type="submit" class="btn btn-danger">Видалити</button>
             </form>
         </td>
     </tr>
+</tbody>
 </table>
-<a th:href="@{/admin/{adminId}/create-restaurant(adminId=${adminId})}">Додати ресторан</a>
-<a th:href="@{'/admin/' + ${adminId} + '/dashboard'}" >До інформаційної панелі</a>
+<a  class="button-add" th:href="@{/admin/{adminId}/create-restaurant(adminId=${adminId})}">Додати ресторан</a>
+<a  class="button-add" th:href="@{'/admin/' + ${adminId} + '/dashboard'}" >До інформаційної панелі</a>
+</div>
 </body>
 </html>

@@ -2,16 +2,18 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Редагувати ресторан</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/restaurant-edit.css">
 </head>
 <body>
-<h2>Редагувати ресторан</h2>
+<div class="container">
+<h1>Редагувати ресторан</h1>
 <form th:action="@{/admin/{adminId}/restaurant/{id}/edit(id=${restaurant.getId()},adminId=${adminId})}"
       th:object="${restaurant}"
       method="post">
-    <label>Назва: <input type="text" th:field="*{name}"/></label><br>
-    <label>Опис: <input type="text" th:field="*{description}"/></label><br>
-    <button type="submit">Save</button>
+    <label>Назва: <input type="text" th:field="*{name}"class="form-control" placeholder="Назва ресторану *" /></label><br>
+    <label>Опис: <input type="text" th:field="*{description}" class="form-control" placeholder="Опис ресторану *"/></label><br>
+    <button type="submit" class="btn btn-primary">Зберегти</button>
 </form>
+</div>
 </body>
 </html>
