@@ -26,6 +26,8 @@
         <a th:if="${user.isAdmin()}" th:href="@{'/admin/' + ${user.getId()} + '/dashboard'}" class="btn btn-secondary">До інформаційної панелі</a>
 </div>
     </div>
+    <a th:if="${user.isAdmin()}" th:href="@{'/admin/' + ${user.getId()} + '/dashboard'}">До інформаційної панелі</a>
+    <a th:href="@{'/user/' + ${user.getId()} + '/restaurants'}">Ресторани</a>
 </div>
 
 </body>

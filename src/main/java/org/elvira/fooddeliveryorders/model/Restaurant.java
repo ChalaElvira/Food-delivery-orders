@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "RESTAURANT")
+@Table(name = "RESTAURANTS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
