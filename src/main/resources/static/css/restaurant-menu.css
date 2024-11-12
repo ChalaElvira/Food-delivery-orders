@@ -1,0 +1,87 @@
+body {
+    padding-top: 20px;    
+    font-family: Arial, sans-serif;
+    background-image: url("/static/images/home_background.jpg"); 
+    background-size: cover;
+    background-position: top; 
+}
+
+.restaurant-name {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.restaurant-name h1 {
+
+    color: #ff542a;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.restaurant-name p {
+    color: #f8eded;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.container h2 {
+    color: #f8e4e1ad;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.container  {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(83, 71, 71, 0.9); 
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 1);
+}
+
+.container h3 {
+    display: flex;
+    color: #f86d4af1;
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 5%;
+}
+
+.container p {
+    color: #ffffff;
+    font-size: 18px;
+    margin-left: 3%;
+}
+
+.container .btn-secondary {
+    
+    background-color: #d34926;
+    margin-right: 10px;
+    border-radius: 15cap;
+    color:white;  
+}
+
+.container .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.btn {
+    padding: 8px 16px;
+    margin-top: 10px;
+}
+
+a.btn-secondary{
+    background-color: #d34926;
+    border-radius: 15cap;
+    color:white;
+    font-size: 16px;
+    margin-left: 3%;
+    padding: 8px;
+}

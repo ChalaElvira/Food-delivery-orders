@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Меню</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/static/css/restaurant-menu.css">
+
 </head>
 <body>
-
+<div class="restaurant-name">
 <h1 th:text="${restaurant.getName()}">Назва</h1>
 <p th:text="${restaurant.getDescription()}">Опис</p>
-
+</div>
+<div class="container">
 <h2>Menu</h2>
 
 <div th:each="dish : ${dishes}">
     <div>
-        <h3 th:text="${dish.getName()}">Назва</h3>
+        <h3 th:text="${dish.getName()}" class="restaurant-name">Назва</h3>
         <p th:text="${dish.getDescription()}">Опис</p>
-        <p>Price: $<span th:text="${dish.getPrice()}">0.00</span></p>
+        <p>Price: $<span th:text="${dish.getPrice()}">0.00</span></p><br>
         <a th:href="@{'/user/' + ${userId} + '/restaurant/' + ${restaurant.getId()} + '/dish/' + ${dish.getId()}}"
            class="btn btn-secondary">Детальніше</a>
-        <a th:href="@{'/user/' + ${userId} + '/dish/' + ${dish.getId()} + '/add'}">Додати до кошика</a>
-    </div>
+        <a th:href="@{'/user/' + ${userId} + '/dish/' + ${dish.getId()} + '/add'}"
+        class="btn btn-secondary">Додати до кошика</a>
+    </div><br><br>
     <hr>
 </div>
-
-<a th:href="@{'/user/' + ${userId} + '/restaurants'}" class="btn btn-secondary">До списку ресторанів</a>
-<a th:href="@{/user/{id}/home(id=${userId})}" class="btn btn-secondary">Домашня сторінка</a>
+</div>
+<a th:href="@{'/user/' + ${userId} + '/restaurants'}" class="btn-secondary">До списку ресторанів</a>
+<a th:href="@{/user/{id}/home(id=${userId})}" class="btn-secondary">Домашня сторінка</a>
 </body>
 </html>

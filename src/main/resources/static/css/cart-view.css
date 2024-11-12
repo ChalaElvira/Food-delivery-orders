@@ -45,7 +45,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background-color: #d8d0d0;
+    background-color: #fcf2f2;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -81,7 +81,6 @@ a, .btn {
 a {
     color: #584a4a;
     background-color: #fdae87;
-    cursor: pointer;
 }
 
 a:hover {
@@ -103,8 +102,24 @@ a:hover {
 th {
     font-weight: bold;
 }
+.button-refresh{
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 15px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    background-color: #9c3c2be0;
+    cursor: pointer;
+}
+ h2{
+    color: #fae5e5;
+ }
 
-.btn-primary {
+.button-secondary{
     padding: 15px;
     margin-top: 20px;
     border-radius: 15px;
