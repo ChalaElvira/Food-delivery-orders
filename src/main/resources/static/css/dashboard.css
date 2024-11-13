@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    background-image: url("/static/images/dashboard_user-list_background.jpg"); 
+    background-image: url("/images/dashboard_user-list_background.jpg");
     background-size: cover;
     background-position: center;
 }

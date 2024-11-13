@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url("/static/images/dashboard_user-list_background.jpg"); 
+    background-image: url("/images/dashboard_user-list_background.jpg");
     background-size: cover;
     background-position: center;
 }

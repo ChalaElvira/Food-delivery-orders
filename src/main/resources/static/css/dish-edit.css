@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url("/static/images/login_background.jpg"); 
+    background-image: url("/images/login_background.jpg");
     background-size: cover;
     background-position: center;
 }
