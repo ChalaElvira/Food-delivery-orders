@@ -1,6 +1,7 @@
 package org.elvira.fooddeliveryorders.services;
 
 import org.elvira.fooddeliveryorders.model.Order;
+import org.elvira.fooddeliveryorders.model.OrderStatus;
 import org.elvira.fooddeliveryorders.model.User;
 import org.elvira.fooddeliveryorders.repositories.OrderRepository;
 import org.elvira.fooddeliveryorders.services.interfaces.IOrderService;
@@ -23,6 +24,8 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order createOrder(Order order) {
+        order.setStatus(OrderStatus.PENDING);
+
         return orderRepository.save(order);
     }
 
@@ -35,8 +38,8 @@ public class OrderService implements IOrderService {
     public Order updateOrder(Order order, Long orderId) {
         Order orderToUpdate = orderRepository.findById(orderId).orElseThrow();
 
-        orderToUpdate.getOrderDetails().clear();
-        order.getOrderDetails().forEach(orderToUpdate::addOrderDetail);
+        orderToUpdate.setStatus(order.getStatus());
+        orderToUpdate.setTotal(order.getTotal());
 
         return orderRepository.save(orderToUpdate);
     }

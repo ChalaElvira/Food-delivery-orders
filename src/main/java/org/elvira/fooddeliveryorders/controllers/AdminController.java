@@ -1,6 +1,7 @@
 package org.elvira.fooddeliveryorders.controllers;
 
 import org.elvira.fooddeliveryorders.model.*;
+import org.elvira.fooddeliveryorders.services.OrderService;
 import org.elvira.fooddeliveryorders.services.interfaces.IDishService;
 import org.elvira.fooddeliveryorders.services.interfaces.IRestaurantService;
 import org.elvira.fooddeliveryorders.services.interfaces.IUserService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -24,14 +27,16 @@ public class AdminController {
     private final IUserService userService;
     private final IRestaurantService restaurantService;
     private final IDishService dishService;
+    private final OrderService orderService;
 
     @Autowired
     public AdminController(IUserService userService,
                            IRestaurantService restaurantService,
-                           IDishService dishService) {
+                           IDishService dishService, OrderService orderService) {
         this.userService = userService;
         this.restaurantService = restaurantService;
         this.dishService = dishService;
+        this.orderService = orderService;
     }
 
     @ModelAttribute
@@ -200,5 +205,36 @@ public class AdminController {
                              Model model) {
         dishService.deleteDish(dishId);  // Deletes the dish
         return REDIRECT_TO_DISHES.formatted(model.getAttribute(ADMIN_ID), restaurantId);
+    }
+
+    @GetMapping("/orders")
+    public String orders(Model model) {
+        List<Order> orders = new ArrayList<>();
+
+        userService.getAllUsers()
+                .forEach(user -> orders.addAll(user.getOrders()));
+
+        model.addAttribute("orders", orders);
+        return "admin/order-list";
+    }
+
+    // Форма для редагування замовлення
+    @GetMapping("/order/{id}/edit")
+    public String editOrderForm(@PathVariable("id") Long id,
+                                Model model) {
+        Order order = orderService.getOrder(id);
+        model.addAttribute("order", order);
+        model.addAttribute("statuses", OrderStatus.values()); // Список статусів
+        return "admin/order-edit";
+    }
+
+    // Обробка редагування замовлення
+    @PostMapping("/order/{id}/edit")
+    public String updateOrder(@PathVariable("id") Long id,
+                              @ModelAttribute("order") Order updatedOrder,
+                              Model model) {
+
+        orderService.updateOrder(updatedOrder, id);
+        return "redirect:/admin/%s/orders".formatted(model.getAttribute(ADMIN_ID));
     }
 }

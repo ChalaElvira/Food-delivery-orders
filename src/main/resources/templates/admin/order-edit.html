@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редагування замовлення</title>
+    <link rel="stylesheet" href="/css/order-list.css">
+</head>
+<body>
+<div class="container">
+    <h1>Редагування замовлення</h1>
+    <form th:action="@{/admin/{adminId}/order/{id}/edit(id=${order.id},adminId=${adminId})}" th:object="${order}"
+          method="post">
+        <div>
+            <label for="id">ID Замовлення:</label>
+            <input type="text" id="id" th:value="${order.id}" readonly>
+        </div>
+        <div>
+            <label for="date">Дата:</label>
+            <input type="text" id="date" th:value="${#dates.format(order.date, 'yyyy-MM-dd HH:mm')}" readonly>
+        </div>
+        <div>
+            <label for="user">Користувач:</label>
+            <input type="text" id="user" th:value="${order.user.username}" readonly>
+        </div>
+        <div>
+            <label for="total">Загальна сума:</label>
+            <input type="number" id="total" th:field="*{total}" step="0.01" required>
+        </div>
+        <div>
+            <label for="status">Статус:</label>
+            <select id="status" th:field="*{status}">
+                <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}"
+                        th:selected="${status == order.status}"></option>
+            </select>
+        </div>
+        <button class="button" type="submit">Зберегти</button>
+        <a th:href="@{/admin/{adminId}/orders(adminId=${adminId})}" class="button">Скасувати</a>
+    </form>
+</div>
+</body>
+</html>

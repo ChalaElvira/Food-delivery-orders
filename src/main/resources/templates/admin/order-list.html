@@ -13,7 +13,7 @@
             <th>ID замовлення</th>
             <th>Дата</th>
             <th>Статус</th>
-            <th hidden="hidden">Користувач</th>
+            <th>Користувач</th>
             <th>Деталі замовлення</th>
             <th>Сума</th>
             <th></th>
@@ -24,7 +24,7 @@
             <td th:text="${order.getId()}"></td>
             <td th:text="${#dates.format(order.getDate(), 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${order.getStatus()}">PENDING</td>
-            <td hidden="hidden" th:text="${order.getUser().getUsername()}"></td>
+            <td th:text="${order.getUser().getUsername()}"></td>
             <td>
                 <ul>
                     <li th:each="detail : ${order.getOrderDetails()}">
@@ -36,14 +36,15 @@
             </td>
             <td th:text="${order.getTotal()}"></td>
             <td>
-                <a th:href="@{/user/{userId}/order/{orderId}/repeat(userId=${userId},orderId=${order.getId()})}"
-                class="btn btn-repeate">
-                    Повторити замовлення
+                <a th:href="@{/admin/{adminId}/order/{orderId}/edit(adminId=${adminId},orderId=${order.getId()})}"
+                   class="btn btn-edit">
+                    Редагувати замовлення
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
+    <a class="button-add" th:href="@{'/admin/' + ${adminId} + '/dashboard'}">До інформаційної панелі</a>
 </div>
 </body>
 </html>

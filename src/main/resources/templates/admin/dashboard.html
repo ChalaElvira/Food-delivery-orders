@@ -9,8 +9,9 @@
         <h1>Інформаційна панель адміністратора</h1>
         <div class="dashboard-buttons">
             <a th:href="@{/admin/{id}/users(id=${adminId})}" class="btn btn-primary">Керування користувачами</a>
-            <a th:href="@{/admin/{id}/restaurants(id=${adminId})}" class="btn btn-secondary">Керування закладами</a> 
-            <a th:href="@{/user/{id}/home(id=${adminId})}" class="btn btn-secondary">Домашня сторінка</a>
+            <a th:href="@{/admin/{id}/orders(id=${adminId})}" class="btn">Керування Замовленнями</a>
+            <a th:href="@{/admin/{id}/restaurants(id=${adminId})}" class="btn">Керування закладами</a>
+            <a th:href="@{/user/{id}/home(id=${adminId})}" class="btn">Домашня сторінка</a>
         </div>
     </div> 
 </body>

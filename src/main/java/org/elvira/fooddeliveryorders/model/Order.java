@@ -35,6 +35,10 @@ public class Order {
     @Column(name = "TOTAL")
     private Double total;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS", nullable = false)
+    private OrderStatus status = OrderStatus.PENDING;
+
     public void addOrderDetail(OrderDetail orderDetail) {
         this.addOrderDetail(orderDetail, false);
     }

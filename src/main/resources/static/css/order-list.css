@@ -1,10 +1,8 @@
 body {
-    
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     margin: 0;
     background-image: url("/images/dashboard_user-list_background.jpg");
     background-size: cover;
@@ -23,9 +21,8 @@ h1 {
     background-color:rgba(252, 128, 106, 0.801);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 80%;
     text-align: center;
 }
 
@@ -56,7 +53,6 @@ thead {
 }
 
 th, td {
-    width: 25%;
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
