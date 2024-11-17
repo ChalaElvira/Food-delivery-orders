@@ -54,4 +54,9 @@ public class OrderService implements IOrderService {
         User user = userService.getUserById(userId);
         return orderRepository.findOrderByUser(user);
     }
+
+    @Override
+    public List<Order> getOrdersByStatus(OrderStatus orderStatus) {
+        return orderRepository.findOrderByStatus(orderStatus);
+    }
 }

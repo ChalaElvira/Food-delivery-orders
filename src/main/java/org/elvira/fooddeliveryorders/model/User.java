@@ -40,4 +40,7 @@ public class User {
     public boolean isAdmin() {
         return role.equals(Role.ADMIN);
     }
+    public boolean isCourier() {
+        return role.equals(Role.COURIER) || role.equals(Role.ADMIN);
+    }
 }

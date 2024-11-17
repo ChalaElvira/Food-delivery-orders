@@ -36,11 +36,14 @@ public class LoginController {
 
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             switch (user.getRole()) {
-                case CLIENT, COURIER -> {
+                case CLIENT -> {
                     return "redirect:/user/%s/home".formatted(user.getId());  // Перенаправляємо на домашню сторінку
                 }
                 case ADMIN -> {
                     return "redirect:/admin/%s/dashboard".formatted(user.getId());
+                }
+                case COURIER -> {
+                    return "redirect:/courier/%s/orders-ready".formatted(user.getId());
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + user.getRole());
             }
